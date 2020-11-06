@@ -11,10 +11,10 @@ struct Gallery: Codable {
     let data: [Post]
 }
 
-enum GallerySection {
-    case hot
-    case top
-    case user
+enum GallerySection: String, CaseIterable {
+    case hot = "hot"
+    case top = "top"
+    case user = "user"
 }
 
 enum GallerySort {

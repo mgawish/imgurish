@@ -139,8 +139,7 @@
 				75C8793025552070000AE619 /* CONSTANTS.swift */,
 				750D8E5D25540ECC005B1576 /* Networking */,
 				757572AE2554080B0084C228 /* Model */,
-				7575727C2553EF390084C228 /* FeedView.swift */,
-				757572B72554092D0084C228 /* FeedViewModel.swift */,
+				75BE58C825553B7E009A3A4B /* FeedView */,
 				757572812553EF3A0084C228 /* Assets.xcassets */,
 				757572862553EF3A0084C228 /* LaunchScreen.storyboard */,
 				757572892553EF3A0084C228 /* Info.plist */,
@@ -183,6 +182,15 @@
 				75C8795825552E7E000AE619 /* Gallery.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		75BE58C825553B7E009A3A4B /* FeedView */ = {
+			isa = PBXGroup;
+			children = (
+				7575727C2553EF390084C228 /* FeedView.swift */,
+				757572B72554092D0084C228 /* FeedViewModel.swift */,
+			);
+			path = FeedView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
