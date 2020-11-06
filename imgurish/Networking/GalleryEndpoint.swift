@@ -6,14 +6,17 @@
 //
 
 import Foundation
-
+ 
 enum GalleryEndpoint {
-    case list
+    case list(category: GallerySection, sort: GallerySort, window: GalleryWindow, page: Int)
 }
 
 extension GalleryEndpoint: EndpointProtocol {
     var link: String {
-        "\(CONSTANTS.BASELINK)/gallery/hot/viral/day/1"
+        switch self {
+        case .list(let category, let sort, let window, let page):
+            return "\(CONSTANTS.BASELINK)/gallery/\(category)/\(sort)/\(window)/\(page)"
+        }
     }
     
     var queryParams: [URLQueryItem] {

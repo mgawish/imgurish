@@ -19,8 +19,9 @@ class FeedViewModel: ObservableObject {
     }
     
     func fetchData() {
-        print("fetchData")        
-        guard let published: AnyPublisher<Gallery, Error> = try? publisher.publish(endpoint: GalleryEndpoint.list) else {
+        print("fetchData")
+        let endpoint = GalleryEndpoint.list(category: .hot, sort: .top, window: .week, page: 1)
+        guard let published: AnyPublisher<Gallery, Error> = try? publisher.publish(endpoint: endpoint) else {
             return
         }
         
