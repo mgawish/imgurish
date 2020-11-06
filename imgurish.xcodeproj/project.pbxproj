@@ -20,10 +20,11 @@
 		757572882553EF3A0084C228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 757572862553EF3A0084C228 /* LaunchScreen.storyboard */; };
 		757572932553EF3A0084C228 /* imgurishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757572922553EF3A0084C228 /* imgurishTests.swift */; };
 		7575729E2553EF3A0084C228 /* imgurishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7575729D2553EF3A0084C228 /* imgurishUITests.swift */; };
-		757572B02554081F0084C228 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757572AF2554081F0084C228 /* Post.swift */; };
 		757572B82554092D0084C228 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757572B72554092D0084C228 /* FeedViewModel.swift */; };
 		75C8793125552070000AE619 /* CONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8793025552070000AE619 /* CONSTANTS.swift */; };
 		75C8793B2555288B000AE619 /* AppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8793A2555288B000AE619 /* AppKeys.swift */; };
+		75C8795125552E74000AE619 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8795025552E74000AE619 /* Post.swift */; };
+		75C8795925552E7E000AE619 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8795825552E7E000AE619 /* Gallery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +64,11 @@
 		757572992553EF3A0084C228 /* imgurishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imgurishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7575729D2553EF3A0084C228 /* imgurishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgurishUITests.swift; sourceTree = "<group>"; };
 		7575729F2553EF3A0084C228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		757572AF2554081F0084C228 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		757572B72554092D0084C228 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		75C8793025552070000AE619 /* CONSTANTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONSTANTS.swift; sourceTree = "<group>"; };
 		75C8793A2555288B000AE619 /* AppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeys.swift; sourceTree = "<group>"; };
+		75C8795025552E74000AE619 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		75C8795825552E7E000AE619 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +176,8 @@
 		757572AE2554080B0084C228 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				757572AF2554081F0084C228 /* Post.swift */,
+				75C8795025552E74000AE619 /* Post.swift */,
+				75C8795825552E7E000AE619 /* Gallery.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,7 +314,9 @@
 			files = (
 				757572B82554092D0084C228 /* FeedViewModel.swift in Sources */,
 				75C8793125552070000AE619 /* CONSTANTS.swift in Sources */,
+				75C8795925552E7E000AE619 /* Gallery.swift in Sources */,
 				750D8E6725540F4E005B1576 /* GalleryEndpoint.swift in Sources */,
+				75C8795125552E74000AE619 /* Post.swift in Sources */,
 				757572792553EF390084C228 /* AppDelegate.swift in Sources */,
 				757572802553EF390084C228 /* imgurish.xcdatamodeld in Sources */,
 				7575727B2553EF390084C228 /* SceneDelegate.swift in Sources */,
@@ -319,7 +324,6 @@
 				75349F4E25551570002D4321 /* GenericPublisher.swift in Sources */,
 				75349F56255516A5002D4321 /* NetworkError.swift in Sources */,
 				75C8793B2555288B000AE619 /* AppKeys.swift in Sources */,
-				757572B02554081F0084C228 /* Post.swift in Sources */,
 				750D8E5F25540EE2005B1576 /* EndpointProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
