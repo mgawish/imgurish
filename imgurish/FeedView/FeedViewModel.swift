@@ -10,17 +10,26 @@ import Combine
 
 class FeedViewModel: ObservableObject {
     @Published var posts = [Post]()
+    @Published var selectedPicker = 0 {
+        didSet {
+            switch selectedPicker {
+            case 0: fetchData(section: .hot)
+            case 1: fetchData(section: .top)
+            default: fetchData(section: .hot)
+            }
+        }
+    }
     let publisher = GenericPublisher()
     var cancellable: Cancellable?
-
 
     init() {
         fetchData()
     }
     
-    func fetchData() {
-        print("fetchData")
-        let endpoint = GalleryEndpoint.list(category: .hot, sort: .top, window: .week, page: 1)
+    func fetchData(section: GallerySection = .hot) {
+        print("fetchData \(section)")
+        posts = []
+        let endpoint = GalleryEndpoint.list(category: section, sort: .top, window: .week, page: 1)
         guard let published: AnyPublisher<Gallery, Error> = try? publisher.publish(endpoint: endpoint) else {
             return
         }

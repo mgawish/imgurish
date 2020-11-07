@@ -9,18 +9,15 @@ import SwiftUI
 
 struct FeedView: View {
     @ObservedObject var viewModel = FeedViewModel()
-    @State var selectedPicker = 0
    
-    
     var body: some View {
         VStack {
-            Picker("picker", selection: $selectedPicker) {
-                ForEach(GallerySection.allCases, id: \.self) { section in
-                    Text("\(section.rawValue.capitalized)")
+            Picker(selection: $viewModel.selectedPicker, label: Text("")) {
+                ForEach(0..<GallerySection.allCases.count, id: \.self) { index in
+                    Text("\(GallerySection.allCases[index].rawValue.capitalized)").tag(index)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             Spacer()
-
             if viewModel.posts.isEmpty {
                 ProgressView()
                 Spacer()

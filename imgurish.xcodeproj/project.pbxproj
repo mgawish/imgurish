@@ -21,7 +21,7 @@
 		757572932553EF3A0084C228 /* imgurishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757572922553EF3A0084C228 /* imgurishTests.swift */; };
 		7575729E2553EF3A0084C228 /* imgurishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7575729D2553EF3A0084C228 /* imgurishUITests.swift */; };
 		757572B82554092D0084C228 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757572B72554092D0084C228 /* FeedViewModel.swift */; };
-		75C8793125552070000AE619 /* CONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8793025552070000AE619 /* CONSTANTS.swift */; };
+		75C8793125552070000AE619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8793025552070000AE619 /* Constants.swift */; };
 		75C8793B2555288B000AE619 /* AppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8793A2555288B000AE619 /* AppKeys.swift */; };
 		75C8795125552E74000AE619 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8795025552E74000AE619 /* Post.swift */; };
 		75C8795925552E7E000AE619 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C8795825552E7E000AE619 /* Gallery.swift */; };
@@ -66,7 +66,7 @@
 		7575729D2553EF3A0084C228 /* imgurishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgurishUITests.swift; sourceTree = "<group>"; };
 		7575729F2553EF3A0084C228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		757572B72554092D0084C228 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
-		75C8793025552070000AE619 /* CONSTANTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONSTANTS.swift; sourceTree = "<group>"; };
+		75C8793025552070000AE619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		75C8793A2555288B000AE619 /* AppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeys.swift; sourceTree = "<group>"; };
 		75C8795025552E74000AE619 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		75C8795825552E7E000AE619 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				75C8796025552F22000AE619 /* AppKeys.plist */,
 				75C8793A2555288B000AE619 /* AppKeys.swift */,
 				7575727A2553EF390084C228 /* SceneDelegate.swift */,
-				75C8793025552070000AE619 /* CONSTANTS.swift */,
+				75C8793025552070000AE619 /* Constants.swift */,
 				750D8E5D25540ECC005B1576 /* Networking */,
 				757572AE2554080B0084C228 /* Model */,
 				75BE58C825553B7E009A3A4B /* FeedView */,
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				757572B82554092D0084C228 /* FeedViewModel.swift in Sources */,
-				75C8793125552070000AE619 /* CONSTANTS.swift in Sources */,
+				75C8793125552070000AE619 /* Constants.swift in Sources */,
 				75C8795925552E7E000AE619 /* Gallery.swift in Sources */,
 				750D8E6725540F4E005B1576 /* GalleryEndpoint.swift in Sources */,
 				75C8795125552E74000AE619 /* Post.swift in Sources */,
