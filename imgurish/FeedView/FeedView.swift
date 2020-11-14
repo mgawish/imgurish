@@ -20,10 +20,11 @@ struct FeedView: View {
             Spacer()
             if viewModel.posts.isEmpty {
                 ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.green))
                 Spacer()
             } else {
                 List(viewModel.posts) { post in
-                    Text(post.title)
+                    PostView(post: post)
                 }
             }
         }

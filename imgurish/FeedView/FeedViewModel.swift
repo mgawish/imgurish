@@ -23,7 +23,7 @@ class FeedViewModel: ObservableObject {
     var cancellable: Cancellable?
 
     init() {
-        fetchData()
+       fetchData()
     }
     
     func fetchData(section: GallerySection = .hot) {
@@ -42,7 +42,7 @@ class FeedViewModel: ObservableObject {
                 case .failure(let error): print("error \(error)")
                 }
             } receiveValue: { gallery in
-                self.posts = gallery.data
+                self.posts = gallery.data.filter({ $0.isValid }) //Array(gallery.data.prefix(3))
             }
     }
 }
