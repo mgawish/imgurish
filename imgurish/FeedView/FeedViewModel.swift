@@ -42,7 +42,7 @@ class FeedViewModel: ObservableObject {
                 case .failure(let error): print("error \(error)")
                 }
             } receiveValue: { gallery in
-                self.posts = gallery.data.filter({ $0.isValid }) //Array(gallery.data.prefix(3))
+                self.posts = gallery.data.filter({ $0.isValid })
             }
     }
 }
