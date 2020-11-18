@@ -12,19 +12,24 @@ struct FeedView: View {
    
     var body: some View {
         VStack {
+            //MARK:- Picker
             Picker(selection: $viewModel.selectedPicker, label: Text("")) {
                 ForEach(0..<GallerySection.allCases.count, id: \.self) { index in
                     Text("\(GallerySection.allCases[index].rawValue.capitalized)").tag(index)
                 }
             }.pickerStyle(SegmentedPickerStyle())
+            
             Spacer()
+            
+            //MARK: Content
             if viewModel.posts.isEmpty {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.green))
                 Spacer()
             } else {
                 List(viewModel.posts) { post in
-                    PostView(post: post)
+                    PostView(post: post,
+                             onTapFav: { viewModel.onTapFav(post) })
                 }
             }
         }

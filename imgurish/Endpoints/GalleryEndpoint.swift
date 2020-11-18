@@ -19,6 +19,10 @@ extension GalleryEndpoint: EndpointProtocol {
         }
     }
     
+    var httpMethod: HttpMethod {
+        return .GET
+    }
+    
     var queryParams: [URLQueryItem] {
         []
     }

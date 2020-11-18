@@ -21,9 +21,21 @@ class GenericPublisher {
         CONSTANTS.COMMON_HEADERS.forEach{ key, value in
             urlRequest.addValue(value, forHTTPHeaderField: key)
         }
+        
+        urlRequest.httpMethod = endpoint.httpMethod.rawValue
 
+        
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .map(\.data)
+            .tryMap({ data, response in
+                if let httpResponse = response as? HTTPURLResponse {
+                    switch httpResponse.statusCode {
+                    case 401:
+                        throw NetworkError.unauthorized
+                    default: break
+                    }
+                }
+                return data
+            })
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }

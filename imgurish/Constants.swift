@@ -10,6 +10,6 @@ import Foundation
 struct CONSTANTS {
     static let BASELINK: String = "https://api.imgur.com/3"
     static let COMMON_HEADERS: [String: String] = [
-        "Authorization": "Client-ID \(AppKeys.shared.clientId)"
+        "Authorization": AppKeys.shared.accessToken != nil ? "Bearer \(AppKeys.shared.accessToken!)" : "Client-ID \(AppKeys.shared.clientId)"
     ]
 }

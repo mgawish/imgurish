@@ -12,6 +12,7 @@ class AppKeys {
     
     var clientId = ""
     var clientSecret = ""
+    var accessToken: String?
     
     init() {
         guard let filePath = Bundle.main.path(forResource: "AppKeys", ofType: "plist") else {
@@ -22,5 +23,6 @@ class AppKeys {
         
         clientId = plist?["clientId"] as? String ?? ""
         clientSecret = plist?["clientSecret"] as? String ?? ""
+        accessToken = plist?["accessToken"] as? String
     }
 }

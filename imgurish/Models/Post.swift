@@ -15,6 +15,7 @@ struct Post: Codable, Identifiable {
     let points: Int
     let images: [PostImage]?
     let tags: [PostTag]
+    var favorite: Bool
     
     var firstImage: PostImage? {
         return images?.first

@@ -10,7 +10,7 @@ import Combine
 
 class FeedViewModel: ObservableObject {
     @Published var posts = [Post]()
-    @Published var selectedPicker = 0 {
+    @Published var selectedPicker = 1 {
         didSet {
             switch selectedPicker {
             case 0: fetchData(section: .hot)
@@ -35,7 +35,7 @@ class FeedViewModel: ObservableObject {
         }
         
         cancellable = published
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished: print("finished")
@@ -44,5 +44,42 @@ class FeedViewModel: ObservableObject {
             } receiveValue: { gallery in
                 self.posts = gallery.data.filter({ $0.isValid })
             }
+    }
+    
+    func onTapUp(_ post: Post) {
+        
+    }
+    
+    func onTapDown(_ post: Post) {
+        
+    }
+    
+    func onTapComment(_ post: Post) {
+        
+    }
+    
+    func onTapFav(_ post: Post) {
+        print("onTapFav")
+        let endpoint = AlbumEndpoint.favorite(id: post.id)
+        guard let published: AnyPublisher<FavoriteResponse, Error> = try? publisher.publish(endpoint: endpoint) else {
+            return
+        }
+        
+        cancellable = published
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished: print("finished")
+                case .failure(let error): print("error \(error)")
+                }
+            } receiveValue: { data in
+                if let index = self.posts.firstIndex(where: { $0.id == post.id }) {
+                    self.posts[index].favorite = data.isFavorite
+                }
+            }
+    }
+    
+    func onTapShare(_ post: Post) {
+        
     }
 }

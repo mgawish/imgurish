@@ -11,10 +11,26 @@ struct PostView: View {
     var post: Post
     @StateObject var imageLoader: ImageLoader
 
-    init(post: Post) {
+    var onTapUp: ()->Void
+    var onTapDown: ()->Void
+    var onTapComment: ()->Void
+    var onTapFav: ()->Void
+    var onTapShare: ()->Void
+    
+    init(post: Post,
+         onTapUp: @escaping ()->Void = {},
+         onTapDown: @escaping ()->Void = {},
+         onTapComment: @escaping ()->Void = {},
+         onTapFav: @escaping ()->Void = {},
+         onTapShare: @escaping ()->Void = {}) {
         self.post = post
         _imageLoader = StateObject(wrappedValue: ImageLoader(post.firstImage?.link ?? "",
                                                              cache: Environment(\.imageCache).wrappedValue))
+        self.onTapUp = onTapUp
+        self.onTapDown = onTapDown
+        self.onTapComment = onTapComment
+        self.onTapFav = onTapFav
+        self.onTapShare = onTapShare
     }
     
     var body: some View {
@@ -22,6 +38,8 @@ struct PostView: View {
             //MARK:- Title
             Text(post.title)
                 .font(.title)
+            
+            Text(post.id)
             
             //MARK:- Subtitle
             HStack {
@@ -47,9 +65,7 @@ struct PostView: View {
             //MARK:- CTAs
             HStack(spacing: 16) {
                 //MARK:- Up Points
-                Button(action: {
-                    print("Up Points")
-                }) {
+                Button(action: onTapUp) {
                     Image(systemName: "arrow.down")
                         .foregroundColor(.gray)
                 }
@@ -57,9 +73,7 @@ struct PostView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 
                 //MARK:- Down Votes
-                Button(action: {
-                    print("Down Votes")
-                }) {
+                Button(action: onTapDown) {
                     Image(systemName: "arrow.up")
                         .foregroundColor(.gray)
                 }
@@ -67,9 +81,7 @@ struct PostView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 
                 //MARK:- Comments
-                Button(action: {
-                    print("Comments")
-                }) {
+                Button(action: onTapComment) {
                     Image(systemName: "bubble.right")
                         .foregroundColor(.gray)
                 }
@@ -77,19 +89,21 @@ struct PostView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 
                 //MARK:- Favorites
-                Button(action: {
-                    print("Favorites")
-                }) {
-                    Image(systemName: "heart")
-                        .foregroundColor(.gray)
+                Button(action: onTapFav) {
+                    if post.favorite {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.green)
+                    } else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.gray)
+                    }
+                    
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
                 
                 //MARK:- Share
-                Button(action: {
-                    print("Share")
-                }) {
+                Button(action: onTapShare) {
                     Image(systemName: "square.and.arrow.up")
                         .foregroundColor(.gray)
                 }
@@ -114,6 +128,10 @@ struct PostView: View {
         }
         .colorScheme(.light)
     }
+    
+    func applyFavorite() {
+        
+    }
 }
 
 struct PostView_Previews: PreviewProvider {
@@ -125,14 +143,16 @@ struct PostView_Previews: PreviewProvider {
                                 downs: 1,
                                 points: 10,
                                 images: [],
-                                tags: []))
+                                tags: [],
+                                favorite: false))
             PostView(post: Post(id: "1",
                                 title: "Meme",
                                 ups: 2,
                                 downs: 1,
                                 points: 10,
                                 images: [],
-                                tags: []))
+                                tags: [],
+                                favorite: true))
         }
        
     }
