@@ -18,6 +18,7 @@ struct FeedView: View {
                     Text("\(GallerySection.allCases[index].rawValue.capitalized)").tag(index)
                 }
             }.pickerStyle(SegmentedPickerStyle())
+            .background(Color.white)
             
             Spacer()
             
@@ -29,10 +30,13 @@ struct FeedView: View {
             } else {
                 List(viewModel.posts) { post in
                     PostView(post: post,
+                             onTapUp: { viewModel.onTapUp(post) },
+                             onTapDown: { viewModel.onTapDown(post) },
                              onTapFav: { viewModel.onTapFav(post) })
                 }
             }
         }
+        .background(Color.background)
     }
 }
 

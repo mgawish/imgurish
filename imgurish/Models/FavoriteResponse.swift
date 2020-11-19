@@ -15,3 +15,9 @@ struct FavoriteResponse: Codable {
         data == "favorited"
     }
 }
+
+struct VoteResponse: Codable {
+    var data: Bool
+    var success: Bool
+    var status: Int
+}

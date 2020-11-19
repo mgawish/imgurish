@@ -30,3 +30,9 @@ enum GalleryWindow {
     case month
     case year
 }
+
+enum GalleryVote: String {
+    case up
+    case down
+    case veto
+}

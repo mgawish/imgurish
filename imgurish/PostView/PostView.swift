@@ -37,13 +37,16 @@ struct PostView: View {
         VStack(alignment: .leading, spacing: 16) {
             //MARK:- Title
             Text(post.title)
+                .foregroundColor(.white)
                 .font(.title)
             
             Text(post.id)
+                .foregroundColor(.white)
             
             //MARK:- Subtitle
             HStack {
                 Text("Points: \(post.points)")
+                    .foregroundColor(.white)
                     .font(.subheadline)
             }
             
@@ -66,16 +69,30 @@ struct PostView: View {
             HStack(spacing: 16) {
                 //MARK:- Up Points
                 Button(action: onTapUp) {
-                    Image(systemName: "arrow.down")
-                        .foregroundColor(.gray)
+                    if post.voteType == .up {
+                        Image(systemName: "arrow.up")
+                            .font(Font.body.weight(.medium))
+                            .foregroundColor(.green)
+                    } else {
+                        Image(systemName: "arrow.up")
+                            .font(Font.body.weight(.medium))
+                            .foregroundColor(.white)
+                    }
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
                 
                 //MARK:- Down Votes
                 Button(action: onTapDown) {
-                    Image(systemName: "arrow.up")
-                        .foregroundColor(.gray)
+                    if post.voteType == .down {
+                        Image(systemName: "arrow.down")
+                            .font(Font.body.weight(.medium))
+                            .foregroundColor(.red)
+                    } else {
+                        Image(systemName: "arrow.down")
+                            .font(Font.body.weight(.medium))
+                            .foregroundColor(.white)
+                    }
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -83,7 +100,8 @@ struct PostView: View {
                 //MARK:- Comments
                 Button(action: onTapComment) {
                     Image(systemName: "bubble.right")
-                        .foregroundColor(.gray)
+                        .font(Font.body.weight(.medium))
+                        .foregroundColor(.white)
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -92,10 +110,12 @@ struct PostView: View {
                 Button(action: onTapFav) {
                     if post.favorite {
                         Image(systemName: "heart.fill")
+                            .font(Font.body.weight(.medium))
                             .foregroundColor(.green)
                     } else {
                         Image(systemName: "heart")
-                            .foregroundColor(.gray)
+                            .font(Font.body.weight(.medium))
+                            .foregroundColor(.white)
                     }
                     
                 }
@@ -105,20 +125,22 @@ struct PostView: View {
                 //MARK:- Share
                 Button(action: onTapShare) {
                     Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(.gray)
+                        .font(Font.body.weight(.medium))
+                        .foregroundColor(.white)
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
-               
             }
             .frame(maxWidth: .infinity)
             
-            HStack(spacing: 16) {
-                ForEach(post.tags, id: \.id) { tag in
-                    Text("\(tag.name)")
-                }
-            }
+//            HStack(spacing: 16) {
+//                ForEach(post.tags, id: \.id) { tag in
+//                    Text("\(tag.name)")
+//                }
+//            }
         }
+        .padding()
+        .background(Color.card)
         .onAppear {
             if imageLoader.image == nil {
                 DispatchQueue.main.async {
@@ -126,11 +148,6 @@ struct PostView: View {
                 }
             }
         }
-        .colorScheme(.light)
-    }
-    
-    func applyFavorite() {
-        
     }
 }
 
@@ -144,7 +161,8 @@ struct PostView_Previews: PreviewProvider {
                                 points: 10,
                                 images: [],
                                 tags: [],
-                                favorite: false))
+                                favorite: false,
+                                vote: "up"))
             PostView(post: Post(id: "1",
                                 title: "Meme",
                                 ups: 2,
@@ -152,8 +170,9 @@ struct PostView_Previews: PreviewProvider {
                                 points: 10,
                                 images: [],
                                 tags: [],
-                                favorite: true))
+                                favorite: true,
+                                vote: "down"))
         }
-       
+        
     }
 }

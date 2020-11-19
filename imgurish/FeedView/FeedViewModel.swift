@@ -26,7 +26,7 @@ class FeedViewModel: ObservableObject {
        fetchData()
     }
     
-    func fetchData(section: GallerySection = .hot) {
+    func fetchData(section: GallerySection = .top) {
         print("fetchData \(section)")
         posts = []
         let endpoint = GalleryEndpoint.list(category: section, sort: .top, window: .week, page: 1)
@@ -47,11 +47,49 @@ class FeedViewModel: ObservableObject {
     }
     
     func onTapUp(_ post: Post) {
+        print("onTapUp")
+        let voteType: GalleryVote = post.voteType == .up ? .veto : .up
+        let endpoint = GalleryEndpoint.vote(id: post.id, vote: voteType)
+        guard let published: AnyPublisher<VoteResponse, Error> = try? publisher.publish(endpoint: endpoint) else {
+            return
+        }
         
+        cancellable = published
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished: print("finished")
+                case .failure(let error): print("error \(error)")
+                }
+            } receiveValue: { data in
+                print(data)
+                if let index = self.posts.firstIndex(where: { $0.id == post.id }) {
+                    self.posts[index].vote = voteType.rawValue
+                }
+            }
     }
     
     func onTapDown(_ post: Post) {
+        print("onTapDown")
+        let voteType: GalleryVote = post.voteType == .down ? .veto : .down
+        let endpoint = GalleryEndpoint.vote(id: post.id, vote: voteType)
+        guard let published: AnyPublisher<VoteResponse, Error> = try? publisher.publish(endpoint: endpoint) else {
+            return
+        }
         
+        cancellable = published
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished: print("finished")
+                case .failure(let error): print("error \(error)")
+                }
+            } receiveValue: { data in
+                print(data)
+                if let index = self.posts.firstIndex(where: { $0.id == post.id }) {
+                    self.posts[index].vote = voteType.rawValue
+                }
+            }
     }
     
     func onTapComment(_ post: Post) {
@@ -59,7 +97,6 @@ class FeedViewModel: ObservableObject {
     }
     
     func onTapFav(_ post: Post) {
-        print("onTapFav")
         let endpoint = AlbumEndpoint.favorite(id: post.id)
         guard let published: AnyPublisher<FavoriteResponse, Error> = try? publisher.publish(endpoint: endpoint) else {
             return

@@ -16,6 +16,7 @@ struct Post: Codable, Identifiable {
     let images: [PostImage]?
     let tags: [PostTag]
     var favorite: Bool
+    var vote: String?
     
     var firstImage: PostImage? {
         return images?.first
@@ -27,7 +28,10 @@ struct Post: Codable, Identifiable {
         } else {
             return false
         }
-       
+    }
+    
+    var voteType: GalleryVote {
+        GalleryVote(rawValue: vote ?? "") ?? .veto
     }
 }
 
