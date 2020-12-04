@@ -1,5 +1,5 @@
 # Imgurish
-Imgurish is client app for the Imgur platform built using SwiftUI and Combine. 
+Imgurish is a client app for the Imgur platform built using SwiftUI and Combine. 
 
 # Imgur API
 https://api.imgur.com
